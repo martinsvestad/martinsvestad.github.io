@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validering av input-felt</title>
+</head>
+<body>
+
+<h1>Validering av input-felt ved å bruke if-setning</h1>
+
+<p>Skriv inn ditt navn</p>
+
+<div>
+
+    <span>Navn:</span>
+    <input type="text" id="inpNavn">
+</div>
+
+<div id="divResultat">
+
+</div>
+
+<script>
+
+    var inpNavn = document.getElementById ("inpNavn");  // Oppretter en variabel som referer til inpNavn elementet
+    var divResultat = document.getElementById("divResultat"); // referer til div-resultat-elementet
+
+    // Oppretter en funksjon som kjører hver gang en tast trykkes i input-feltet
+    inpNavn.onkeyup = function () {
+
+        var navn = inpNavn.value; // Oppretter en variabel navn hvor verdien i input feltet lagres, oppdateres hver gang en tast trykkes
+
+        // Oppretter en if-setning som sjekker om lengden på inpNavn sin verdi er kortere enn 4 tegn
+        if (inpNavn.value.length < 4){
+            divResultat.innerHTML = "Hei" + navn + ". Navnet er for kort (minst 4 tegn)"
+        }
+        else if (navn. length > 15){  // Hvis lengden på navn
+            divResultat.innerHTML = "Hei " + navn + ". Navnet ditt er for langt (maks 15 tegn)"
+        }
+
+        else{  //Hvis ingen av testene over var true, så kjøres denne koden:
+            divResultat.innerHTML = "Hei " + navn + ". Bra! Navnet er akkurat passe langt."
+        }
+    }
+
+    //Switch-setning
+
+    var verdi = "jada";
+
+    switch (verdi) {
+        case "hei":
+          document.write("Hei");
+          break;
+        case "jada":
+        case "JADA":
+          document.write("Jada");
+          break;
+                       
+    }
+
+</script>
+
+</body>
+</html>

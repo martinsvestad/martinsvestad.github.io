@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 1</title>
+</head>
+<body>
+
+<h1>Oppgave 1</h1>
+
+<h3>Deloppgave 1</h3>
+<button id="btn">Få opp listen over filmer</button>
+<div id="utskrift"></div>
+
+<h3>Deloppgave 2</h3>
+<button id="btn3">Film nr.3</button>
+<div id="utskrift3"></div>
+
+<h3>Deloppgave 3</h3>
+<input type="text" id="SkrivInn">
+<button id="btnInput">Trykk for å legge til en film</button>
+<div id="utskriftInput"></div>
+
+<h1>Oppgave 2</h1>
+<h3>Deloppgave 1</h3>
+<button id="btnEgenskaper">Tittel sang nr.2</button>
+<div id="egenskaper"></div>
+
+
+<script>
+
+    var btn = document.getElementById("btn");
+    var utskrift = document.getElementById("utskrift");
+
+    var btn3 = document.getElementById("btn3");
+    var utskrift3 = document.getElementById("utskrift3");
+
+    var SkrivInn = document.getElementById("SkrivInn");
+    var btnInput = document.getElementById("btnInput");
+    var utskriftInput = document.getElementById("utskriftInput");
+
+    var minArray = ["Harry Potter", " Batman", " James Bond", " Martin Svestad"];
+
+    var btnEgenskaper = document.getElementById("btnEgenskaper");
+    var egenskaper = document.getElementById("egenskaper");
+
+    var sang1 = {
+        artist: "Martin",
+        tittel: "Svestad"
+    };
+
+    var sang2 = {
+        artist: "Felix",
+        tittel: "Berg"
+    };
+
+    var sang3 = {
+        artist:"Pål",
+        tittel: "Roppen"
+    };
+
+    btnEgenskaper.onclick = function () {
+    egenskaper.innerHTML = sang2.tittel;
+    }
+    
+    //Deloppgave 1
+    btn.onclick = function () {
+        utskrift.innerHTML = minArray
+    };
+
+    //Deloppgave 2
+    btn3.onclick = function () {
+        utskrift3.innerHTML = minArray[2]
+    };
+
+    //Deloppgave 3
+    btnInput.onclick = function () {
+        minArray.push(SkrivInn.value);
+        utskriftInput.innerHTML = minArray;
+        SkrivInn.value = "";
+    }
+
+
+</script>
+
+</body>
+</html>

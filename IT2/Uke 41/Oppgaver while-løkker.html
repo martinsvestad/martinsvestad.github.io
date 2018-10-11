@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgaver while-løkker</title>
+</head>
+<body>
+
+<script>
+
+    var vinner = 1;
+
+    while (vinner !=10){
+    vinner = Math.floor(Math.random()*10+1);
+    document.write("Du fikk verdien: " + vinner);
+    if (vinner !==10) document.write(`<p>Du har ikke vunnet</p>`);
+    if (vinner ==10) document.write(`<p>Du har vunnet!</p>`);
+    }
+
+</script>
+
+</body>
+</html>

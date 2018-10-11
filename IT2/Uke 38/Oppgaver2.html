@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switch-Oppgaver</title>
+    <style>
+        body {
+            background-color: deeppink;
+        }
+        header {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Oppgave 3, uke 38 Switch</h1>
+
+<p>Ditt rovdyr:</p>
+
+
+<div id="divResultat">
+
+</div>
+
+<script>
+
+    var inpNavn = document.getElementById("inpNavn");
+    var divResultat = document.getElementById("divResultat");
+
+
+
+    var rovdyr = prompt("Skriv inn ditt rovdyr");
+
+        switch (rovdyr){
+            case "ULV":
+            case "ulv":
+            case "Ulv":
+                divResultat.innerHTML = ("Antall: Det er 33 ulv i Norge");
+                document.body.style.backgroundColor = "blue";
+                break;
+            case "jerv":
+            case "JERV":
+            case "Jerv":
+                divResultat.innerHTML = ("Antall: Det er 343 jerv i Norge");
+                document.body.style.backgroundColor = "red";
+                break;
+            case "BJØRN":
+            case "bjørn":
+            case "Bjørn":
+                divResultat.innerHTML = ("Antall: Det er 137 bjørn i Norge");
+                document.body.style.backgroundColor = "yellow";
+                break;
+            case "GAUPE":
+            case "gaupe":
+            case "Gaupe":
+                divResultat.innerHTML = ("Antall: Det er 350 gauper i Norge");
+                document.body.style.backgroundColor = "pink";
+                break;
+            default:
+                divResultat.innerHTML = ("Du har valgt et rovdyr som ikke ligger i databasen");
+                document.body.style.backgroundColor = "cyan";
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

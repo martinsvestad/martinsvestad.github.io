@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Firkant som følger musen</title>
+
+    <style>
+
+        body{
+            cursor: none;
+        }
+
+        #firkant{
+            background-color: red;
+            height: 50px;
+            width: 50px;
+            margin-left: 40px;
+            margin-top: 50px
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <img src="fejjaji.jpg" id="firkant"></img>
+
+
+
+    <script>
+
+        var firkant = document.getElementById("firkant");
+
+        document.onmousemove = function(){
+            var x = event.clientX;
+            var y = event.clientY;
+            console.log("x= " + x);
+            console.log("y= " + y);
+
+            firkant.style.marginLeft = x + "px";
+            firkant.style.marginTop = y + "px";
+        }
+
+    </script>
+
+</body>
+</html>

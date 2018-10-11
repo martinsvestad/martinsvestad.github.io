@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas-oppgaver</title>
+
+    <style>
+        canvas {
+            border: solid;
+            background-color: red;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <script>
+
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        //ctx.fillRect(x,y,bredde,høyde);
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,160,600,80);
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(180,0,80,600);
+
+        ctx.fillStyle = "darkblue";
+        ctx.fillRect(0,185,600,35);
+
+        ctx.fillStyle = "darkblue";
+        ctx.fillRect(203,0,35,600);
+
+
+
+    </script>
+
+</body>
+</html>
