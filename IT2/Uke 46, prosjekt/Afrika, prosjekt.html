@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Afrika</title>
+    <link rel="stylesheet" href="Afrika,%20prosjekt.css">
+</head>
+
+<body>
+
+<h1>Afrika</h1>
+
+    <div id="boks">
+        <div></div>
+        <div id="startside" onclick="venstre()">
+            <h3>Startside</h3>
+        </div>
+        <div id="fjell" onclick="midten()">
+            <h3>Kilimanjaro</h3>
+        </div>
+        <div id="safari" onclick="hoyre()">
+            <h3>Safari</h3>
+        </div>
+
+    </div>
+
+    <main id="main">
+        <div id="ark1">
+            <div id="utenpå">
+                <div id="slideshow">
+                    <img src="Fjell.jpg" width="500px" id="fjelltopp">
+                    <img src="Soloppgang.jpg" width="500px">
+                    <img src="Nedover.jpg" width="500px">
+                    <img src="Sjiraff.jpg" width="500px">
+                    <img src="Bilder.jpg" width="500px">
+                    <img src="Elefant.jpg" width="500px">
+                    <img src="Buffalo.jpg" width="500px">
+                    <img src="Løve.jpg" width="500px">
+                    <div id="btnV"> <</div>
+                    <div id="btnH"> ></div>
+                </div>
+            </div>
+        </div>
+        <div id="ark2"></div>
+        <div id="ark3"></div>
+    </main>
+
+
+<script>
+
+    const btnV = document.getElementById("btnV");
+    const slideshow = document.getElementById("slideshow");
+    var marginen = 0;
+
+    btnV.onclick = function () {
+        if (marginen === 0) {
+
+        } else {
+            marginen +=500;
+            slideshow.style.marginLeft = marginen + "px";
+        }
+
+    };
+
+    const btnH = document.getElementById("btnH");
+
+    btnH.onclick = function () {
+        if (marginen < 3500) {
+            marginen -= 500;
+            slideshow.style.marginLeft = marginen + "px";
+        }
+    };
+    var main = document.getElementById("main");
+    function venstre() {
+        main.style.marginLeft = "0";
+    }
+    function midten() {
+        main.style.marginLeft = "-100vw";
+    }
+    function hoyre() {
+        main.style.marginLeft = "-200vw";
+    }
+
+
+</script>
+
+</body>
+</html>
