@@ -2,34 +2,26 @@ body{
     text-align: center;
     background-color: navajowhite;
 }
-
 #boks{
     display: grid;
     grid-template-columns: 2.5fr 1.2fr 1.2fr 1.2fr 2.5fr;
     text-align: center;
     padding: 5%;
 }
-
 #startside{
     border: solid;
     border-right: none;
     background-color: white;
 }
-
 #fjell{
     border: solid;
     background-color: white;
 }
-
 #safari{
     border: solid;
     border-left: none;
     background-color: white;
 }
-
-#fjelltopp{
-}
-
 #fjell:hover, #safari:hover, #startside:hover {
     cursor: pointer;
     background-color: lightskyblue;
@@ -39,25 +31,27 @@ body{
     grid-template-columns: repeat(8, 1fr);
     transition-duration: 1s;
 }
+#knappHolder {
+    position: relative;
+}
 #utenpå {
     width: 500px;
     margin: auto;
     overflow: hidden;
-    position: relative;
 }
-
 #btnV{
     position: absolute;
     top: 50%;
     left: 10%;
     transform: scale(3);
+    z-index: 10;
 }
-
 #btnH{
     position: absolute;
     top: 50%;
     left: 90%;
     transform: scale(3);
+    z-index: 10;
 }
 #btnH, #btnV {
     color: white;
@@ -69,19 +63,104 @@ body{
     opacity: 1;
     transform: scale(4);
 }
-
 main{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    overflow: hidden;
 }
 #ark1 {
     width: 100vw;
 }
 #ark2 {
     width: 100vw;
-    background-color: blue;
 }
 #ark3 {
     width: 100vw;
-    background-color: red;
+}
+#utenpå2{
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+#utenpå3{
+    margin: auto;
+    overflow: hidden;
+    width: 500px;
+}
+#høySjiraff{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 300px;
+}
+#høySjiraff1{
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    height: 100%;
+    width: 300px;
+}
+#slideshow2 {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    transition-duration: 1s;
+}
+#btnV1{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: scale(3);
+    z-index: 10;
+}
+#btnH2{
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: scale(3);
+    z-index: 10;
+}
+#btnH2, #btnV1 {
+    color: white;
+    cursor: pointer;
+    opacity: .6;
+    transition: 0.6s;
+}
+#btnH2:hover, #btnV1:hover {
+    opacity: 1;
+    transform: scale(4);
+}
+#knappHolder1{
+    position: relative;
+}
+#kengerubildeH{
+    height: 50px;
+    width: 75px;
+}
+#kengeru{
+    animation-name: bane;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    position: relative;
+    display: block;
+    float: none;
+}
+@keyframes bane {
+    0% {left: 120px; top: 50px;}
+    50% {left: 120px; top: 0px;}
+    100% {left: 120px; top: 50px;}
+}
+#kengeru1{
+    animation-name: bane;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    position: relative;
+    display: block;
+    float: none;
+}
+#kengerubildeV{
+    height: 50px;
+    width: 75px;
 }

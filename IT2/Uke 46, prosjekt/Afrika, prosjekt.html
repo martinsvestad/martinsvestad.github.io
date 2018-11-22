@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="Afrika,%20prosjekt.css">
 </head>
 
+<div id="kengeru">
+    <img src="kangaroo.jpg" id="kengerubildeH">
+</div>
+<div id="kengeru1">
+    <img src="kangaroo.jpg" id="kengerubildeV">
+</div>
+
 <body>
 
 <h1>Afrika</h1>
@@ -24,25 +31,73 @@
 
     </div>
 
+<img src="høySjiraff.jpg" id="høySjiraff">
+<img src="høySjiraff.jpg" id="høySjiraff1">
+
     <main id="main">
         <div id="ark1">
             <div id="utenpå">
-                <div id="slideshow">
-                    <img src="Fjell.jpg" width="500px" id="fjelltopp">
-                    <img src="Soloppgang.jpg" width="500px">
-                    <img src="Nedover.jpg" width="500px">
-                    <img src="Sjiraff.jpg" width="500px">
-                    <img src="Bilder.jpg" width="500px">
-                    <img src="Elefant.jpg" width="500px">
-                    <img src="Buffalo.jpg" width="500px">
-                    <img src="Løve.jpg" width="500px">
-                    <div id="btnV"> <</div>
-                    <div id="btnH"> ></div>
+                <div id="knappHolder">
+                    <div id="slideshow">
+                        <img src="Fjell.jpg" width="500px" id="fjelltopp">
+                        <img src="Soloppgang.jpg" width="500px">
+                        <img src="Nedover.jpg" width="500px">
+                        <img src="Sjiraff.jpg" width="500px">
+                        <img src="Bilder.jpg" width="500px">
+                        <img src="Elefant.jpg" width="500px">
+                        <img src="Buffalo.jpg" width="500px">
+                        <img src="Løve.jpg" width="500px">
+                        <div id="btnV"> <</div>
+                        <div id="btnH"> ></div>
+                    </div>
+                </div>
+                <p>Dette er litt generelt om Afrika. Afrika er den største verdensdelen etter Asia. Det er et svært stort kontinent, hvor man kan finne på mye rart...</p>
+            <p>Afrika består av 54 selvstendige stater. Under finner du de fem største ut fra areal:</p>
+                <h3>Algerie</h3>
+                <img src="Algerie.png" width="400px">
+                <h3>Den demokratiske republikken Kongo</h3>
+                <img src="kongo.png" width="400px">
+                <h3>Sudan</h3>
+                <img src="sudan.png" width="400px">
+                <h3>Libya</h3>
+                <img src="Libya.png" width="400px">
+                <h3>Tsjad</h3>
+                <img src="tsjad.png" width="400px">
+            </div>
+        </div>
+        <div id="ark2">
+            <div id="utenpå2">
+                <img src="killi.jpg" width="500px" id="killitopp">
+                <p>På vei mot toppen!</p>
+                <p>Her er en kort video som forteller litt om turen:</p>
+                <video controls src="Mt%20Kilimanjaro%20-%20video%20by%20Tanzania%20National%20Park.mp4"></video>
+            </div>
+        </div>
+
+        <div id="ark3">
+            <div id="utenpå3">
+                <div id="knappHolder1">
+                    <div id="slideshow2">
+                        <img src="Sjiraff.jpg" width="500px">
+                        <img src="Bilder.jpg" width="500px">
+                        <img src="Elefant.jpg" width="500px">
+                        <img src="Elefanter.jpg" width="500px">
+                        <img src="Buffalo.jpg" width="500px">
+                        <img src="Løve.jpg" width="500px">
+                        <img src="løvinne.jpg" width="500px">
+                        <img src="løveunger.jpg" width="500px">
+                        <img src="slossing.jpg" width="500px">
+                        <img src="Bavian.jpg" width="500px">
+                        <img src="struts.jpg" width="500px">
+                        <img src="flodhest.jpg" width="500px">
+                        <img src="gap.jpg" width="500px">
+                        <img src="Hotell.jpg" width="500px">
+                        <div id="btnV1"> <</div>
+                        <div id="btnH2"> ></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="ark2"></div>
-        <div id="ark3"></div>
     </main>
 
 
@@ -70,6 +125,7 @@
             slideshow.style.marginLeft = marginen + "px";
         }
     };
+
     var main = document.getElementById("main");
     function venstre() {
         main.style.marginLeft = "0";
@@ -81,6 +137,30 @@
         main.style.marginLeft = "-200vw";
     }
 
+    const btnV1 = document.getElementById("btnV1");
+    const slideshow2 = document.getElementById("slideshow2");
+
+    var marginen1 = 0;
+
+    btnV1.onclick = function () {
+
+        if (marginen1 === 0) {
+
+        } else {
+            marginen1 +=500;
+            slideshow2.style.marginLeft = marginen1 + "px";
+        }
+    };
+
+        const btnH2 = document.getElementById("btnH2");
+
+        btnH2.onclick = function () {
+
+
+            marginen1 -= 500;
+            slideshow2.style.marginLeft = marginen1 + "px";
+
+    }
 
 </script>
 
