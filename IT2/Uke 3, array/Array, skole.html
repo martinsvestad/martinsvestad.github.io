@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array</title>
+</head>
+<body>
+
+    <ul id="filmListe">
+
+    </ul>
+
+<script>
+
+    let filmListe = document.getElementById("filmListe");
+
+    let filmer = ["Ben Hur", "Shawshank Redemption", "Iglorious Bastards"];
+
+    filmer.push("Django Unchained"); //legger til en ting sist i arrayen
+    filmer.unshift("Istid"); //legger til en film først i arrayen
+    filmer.pop(); //tar bort det siste elementet i arrayen
+    filmer.shift(); //tar bort det første elementet i arrayen
+    filmer.splice(1, 2); //først den du vil fjerne, og så hvor mange. Fjerner element med bestemt indeks
+    filmer.splice(1, 1, "Biler"); //bytter ut Shawshank Redemption med Biler
+
+    //filmer[1]="King Kong";
+
+    for (let film of filmer){
+        console.log(film);
+        filmListe.innerHTML += "<li>" + film + "</li>";
+    }
+    /*
+    for (let i=0; i < filmer.length; i++){
+        console.log(filmer[i]);
+    }
+    */
+</script>
+
+</body>
+</html>
