@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<ol id="matvareListe">
+
+</ol>
+
 <script>
 
     /* Oppgave 1 side 206
@@ -21,7 +25,7 @@
     */
 
 
-
+/*  Oppgave 2 side 206
     let trær = ["lønn", "hassel", "bjørk", "eik", "blodlønn", "furu", "gran"];
 
     trær.splice(3, 1);
@@ -33,6 +37,17 @@
     trær.push("fjellbjørk", "dvergbjørk");
 
     document.write(trær);
+*/
+
+    //Oppgave 1 a side 210
+    let matvareListe = document.getElementById("matvareListe");
+
+    let matvarer = ["ost", "brød", "paprika", "kaviar"];
+
+    for (let mat of matvarer){
+        matvareListe.innerHTML += "<li>" + mat + "</li>";
+    }
+
 
 
 </script>

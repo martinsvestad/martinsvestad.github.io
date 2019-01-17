@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgaver side 210</title>
+</head>
+<body>
+
+<ol id="boker">
+
+</ol>
+
+<script>
+
+    let boker = document.getElementById("boker");
+
+    let bokListe = ["Hardyguttene", "Hunger Games", "Tante Ulrikkes vei", "Harry Potter", "Kurt blir grusom"];
+
+    for (let bok of bokListe){
+        boker.innerHTML += "<li>" + bok + "</li>";
+    }
+
+    function sortereBokstaver(tekst1, tekst2) {
+        tekst1 = tekst1.toUpperCase();
+        tekst2 = tekst2.toUpperCase();
+        return tekst1 < tekst2;
+    }
+
+    boker.sort(sortereBokstaver);
+
+
+
+</script>
+
+</body>
+</html>
