@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgaver</title>
+</head>
+<body>
+
+<script>
+
+    var land = ["England", "Norge", "USA", "Kambodsja"];
+    land = new Set(land);
+    var ok = land.has("England");
+    land.add("Laos");
+    land.delete("Norge");
+
+    document.write(ok);
+
+    for (let landet of land){
+        if (landet === "Norge"){
+            alert("Norge er i arrayen");
+        }
+    }
+</script>
+
+</body>
+</html>
