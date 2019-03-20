@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spillprosjekt</title>
+    <link rel="stylesheet" href="Spillprosjekt.css">
+</head>
+<body>
+
+<canvas id="spillCanvas" width="400" height="400"></canvas>
+
+<script>
+
+    const spillCanvas = document.querySelector("#spillCanvas");
+    const ctx = spillCanvas.getContext("2d");
+
+    spillCanvas.width = window.innerWidth;
+    spillCanvas.height = window.innerHeight;
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(10,10,40,40);
+
+</script>
+
+</body>
+</html>
