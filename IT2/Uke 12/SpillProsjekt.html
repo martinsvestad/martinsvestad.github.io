@@ -4,23 +4,93 @@
     <meta charset="UTF-8">
     <title>Spillprosjekt</title>
     <link rel="stylesheet" href="Spillprosjekt.css">
-</head>
-<body>
+    <style>
 
-<canvas id="spillCanvas" width="400" height="400"></canvas>
+    </style>
+</head>
+<body onload="bakgrunnOpp()">
+
+<canvas id="spillCanvas" width="500" height="400"></canvas>
 
 <script>
 
     const spillCanvas = document.querySelector("#spillCanvas");
     const ctx = spillCanvas.getContext("2d");
 
-    spillCanvas.width = window.innerWidth;
-    spillCanvas.height = window.innerHeight;
 
-    ctx.fillStyle = "black";
-    ctx.fillRect(10,10,40,40);
+    var bg = new Image();
+    bg.src = "Unknown.jpg";
+
+    var flyet = new Image();
+    flyet.src = "jagerfly.png";
+
+    function gameLoop(){
+        frame += 1;
+        clearCanvas();
+        tegnbakGrunn();
+        flyttHindere (hindere);
+        fly();
+        if (frame === 120) {
+            console.log(frame);
+            lagStang();
+            frame = 0;
+        }
+            //tegnHindere(hindere);
+
+            requestAnimationFrame(gameLoop);
+
+        }
+
+        function flyttHindere(hindere) {
+            for (let hinder of hindere) {
+                hinder.xpos -= hinder.xfart;
+                ctx.fillStyle = 'white';
+                ctx.fillRect(hinder.xpos, 0, 20, hinder.ypos - 120);
+                ctx.fillRect(hinder.xpos, hinder.ypos, 20, 400 - hinder.ypos);
+            }
+        }
+
+            function fly (){
+          ctx.drawImage(flyet, 20, 20, 100, 50)
+    }
+
+
+    ctx.fillStyle = "white";
+        function lagStang() {
+            var y = Math.random() * 300 + 100;
+            let nyttHinder = {
+                xpos:500,
+                ypos:y,
+                xfart:1.3,
+                yfart:2,
+                xretning:1,
+                yretning:1
+            };
+            hindere.push(nyttHinder);
+        }
+
+        let hindere = [];
+        let frame = 0;
+
+        function clearCanvas() {
+            ctx.fillStyle = '#0d99a5';
+            ctx.fillRect(0,0,spillCanvas.width, spillCanvas.height)
+        }
+
+        function tegnbakGrunn() {
+            ctx.drawImage(bg, 0, 0, spillCanvas.width, spillCanvas.height)
+        }
+
+        function flyttOpp (){
+            spillCanvas.xfart -=1;
+        }
+
+    //setInterval(lagStang, 4000)
+    gameLoop();
 
 </script>
+
+<button onclick="flyttOpp()">Opp</button>
 
 </body>
 </html>
