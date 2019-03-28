@@ -1,4 +1,32 @@
+body{
+    background-color: black;
+    text-align: center;
+}
+
 #spillCanvas{
     background-color: #0d99a5;
 }
 
+#btnStart {
+    display: inline-block;
+    background-color: gold;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#btnStart:hover{
+    background-color: khaki;
+}
+
+#banner {
+    width: 200px;
+    height: auto;
+}
+
+#Poeng{
+    color: white;
+}
+
+#Rekord{
+    color: white;
+}

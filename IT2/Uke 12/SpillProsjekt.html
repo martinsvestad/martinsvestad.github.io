@@ -4,93 +4,159 @@
     <meta charset="UTF-8">
     <title>Spillprosjekt</title>
     <link rel="stylesheet" href="Spillprosjekt.css">
-    <style>
-
-    </style>
 </head>
-<body onload="bakgrunnOpp()">
+<body>
 
-<canvas id="spillCanvas" width="500" height="400"></canvas>
+<img src="banner.jpg" id="banner" /> <br>
+
+<canvas id="spillCanvas" width="600" height="400"></canvas>
+
+<div id="divPoeng">
+<h3 id="Poeng">Poeng: 0</h3>
+<h3 id="Rekord">Rekord: 0</h3>
+</div>
+
+<button id="btnStart">Prøv igjen!</button>
 
 <script>
 
+    //definerer de ulike variablene
     const spillCanvas = document.querySelector("#spillCanvas");
     const ctx = spillCanvas.getContext("2d");
+    const divPoeng = document.querySelector("#divPoeng");
+    const Poeng = document.querySelector("#Poeng");
+    const Rekord = document.querySelector("#Rekord");
+    const btnStart = document.querySelector("#btnStart");
 
+    //global variabel
+    let poeng = 0;
 
+    //oppretter bakgrunnsbilde
     var bg = new Image();
-    bg.src = "Unknown.jpg";
+    bg.src = "rombilde.jpg";
 
+    //oppretter flyet
     var flyet = new Image();
     flyet.src = "jagerfly.png";
 
+    //globale variabler
+    let hindere = [];
+    let frame = 0;
+
+    //Bruker variabler til å gi flyet egenskaper
+    var flyX = 50; //xposisjon til flyet
+    var flyY = 200; //yposisjon til flyet
+    var flyB = 75; //bredden til flyet
+    var flyH = 40; //høyden til flyet
+
+    var aktiv = true;   //variabel på at når man lever så kjører spillet som vanlig
+
+    btnStart.onclick = function() { //funksjon for å restarte spillet om man dør
+        if (!(aktiv)) {             //Om funksjonen ikke er aktiv, altså man er død, så skal følgende skje ved trykk på start-knappen
+            aktiv = true;           //spillet blir aktiv igjen, altså det starter opp igjen
+            hindere =[];            //oppretter hindere
+            gameLoop();             //kjører i gang
+            poeng = 0;              //setter poengsummen tilbake til 0
+            flyY = 200;             //setter posisjonen til flyet tilbake til 200px, utgangsposisjon
+        }
+    }
+
+
+    //Lager en gameloop med de ulike funksjonsdefinisjonene
     function gameLoop(){
-        frame += 1;
+        frame += 1; //plusser på en og en frame
         clearCanvas();
         tegnbakGrunn();
         flyttHindere (hindere);
         fly();
-        if (frame === 120) {
-            console.log(frame);
-            lagStang();
-            frame = 0;
-        }
-            //tegnHindere(hindere);
-
-            requestAnimationFrame(gameLoop);
-
+        sjekkKollisjon();
+        merPoeng();
+        if (frame === 100) { //hver frame er 100px
+            console.log(frame); //logger i konsollen for hver frame
+            lagStang(); //lager ny stang for hver frame
+            frame = 0; //starter på 0
         }
 
-        function flyttHindere(hindere) {
-            for (let hinder of hindere) {
-                hinder.xpos -= hinder.xfart;
-                ctx.fillStyle = 'white';
-                ctx.fillRect(hinder.xpos, 0, 20, hinder.ypos - 120);
-                ctx.fillRect(hinder.xpos, hinder.ypos, 20, 400 - hinder.ypos);
+            if (aktiv) requestAnimationFrame(gameLoop); //Om variabelen aktiv er true, altså så lenge man lever så kjører gameloopen med de ulike funksjonsdefinisjonene
+        }
+
+
+    //Oppretter en funksjon som gjør at poengene øker en gang i sekundet
+    function merPoeng() {
+            Poeng.innerHTML = "Poeng: " + Math.floor(poeng); //skriver ut poeng på nettsiden
+            poeng += 1/60; //øker poengsummen en gang i sekundet
+            if (localStorage.Rekord===undefined){ //Ser om det er satt rekord fra før
+                localStorage.Rekord=0; //om det ikke er noen rekord fra før blir denne satt til 0
+            }
+            Rekord.innerHTML = "Rekord: " + Math.floor(localStorage.Rekord); //skriver ut rekorden på siden, ved å hente ut verdien som er lagret i localStorage
+            if (poeng>localStorage.Rekord){ //sjekker om poengsummen er større enn rekorden
+                localStorage.Rekord=poeng; //isåfall øker rekorden med poengene
+                Rekord.innerHTML = "Ny rekord: " + Math.floor(poeng); //skriver ut den nye rekorden som øker med poengene
+                Rekord.style.color = "DarkGreen"; //setter farge på rekorden for å markere at det settes ny rekord
             }
         }
 
-            function fly (){
-          ctx.drawImage(flyet, 20, 20, 100, 50)
+    //Oppretter en funksjon som flytter hindrene på bakgrunnen
+    function flyttHindere(hindere) {
+        for (let hinder of hindere) { //looper gjennom arrayen hindere
+            hinder.xpos -= hinder.xfart; //trekker fra xposisjonen til hinderne med xfarten, det som skaper at hinderne flytter seg med xfart, hver gang vi tilkaller funksjonen gjør vi xposisjonen mindre slik at hindrene beveger seg til venstre
+            ctx.fillStyle = 'white'; //farge på hindrene
+            ctx.fillRect(hinder.xpos, 0, 20, hinder.ypos - 170); //fyller hinderet som kommer ovenfra
+            ctx.fillRect(hinder.xpos, hinder.ypos, 20, 400 - hinder.ypos); //fyller hinderet som kommer nedenfra
+            }
+        }
+
+    //Oppretter bildet av flyet
+    function fly (){
+            ctx.drawImage(flyet, flyX, flyY, flyB, flyH) //refererer først til flyet, som er variabelen med bilde, så xposisjon, yposisjon, bredde og lengden på bilde
     }
 
-
-    ctx.fillStyle = "white";
-        function lagStang() {
-            var y = Math.random() * 300 + 100;
-            let nyttHinder = {
-                xpos:500,
-                ypos:y,
-                xfart:1.3,
-                yfart:2,
-                xretning:1,
-                yretning:1
+    //Oppretter en funksjon som igjen oppretter de ulike hindrene
+    function lagStang() {
+        var y = Math.random() * 300 + 100; //Får en tilfeldig yposisjon mellom 100 og 400. Grunnlag for produksjon av hinderene, yposisjonen mellom 100 og 400 blir toppen av nederste hinderet. Videre y - 100 for å finne bunnen av det øverste hinderet, mellomrommet mellom hindrene blir da 100px.
+        let nyttHinder = {
+            xpos:600, //xposisjonen til hinderet opprettes ved 500px
+            ypos:y, //yposisjonen til hinderet avhenger av variabelen y
+            xfart:4 //setter hastighet på hvor fort hindrene beveger seg i bredden med px i forhold til frame
             };
-            hindere.push(nyttHinder);
+            hindere.push(nyttHinder); //pusher de nye hindrene inn i arrayen
         }
 
-        let hindere = [];
-        let frame = 0;
-
-        function clearCanvas() {
-            ctx.fillStyle = '#0d99a5';
-            ctx.fillRect(0,0,spillCanvas.width, spillCanvas.height)
+    function clearCanvas() { //funksjon som nullstiller hele canvas
+        ctx.fillStyle = '#0d99a5'; //Setter fyllfarge
+        ctx.fillRect(0,0,spillCanvas.width, spillCanvas.height) //fyller følgende rektangel
         }
 
-        function tegnbakGrunn() {
-            ctx.drawImage(bg, 0, 0, spillCanvas.width, spillCanvas.height)
+
+    function tegnbakGrunn() { //funksjon for å tegne bakgrunnsbilde på canvasen
+        ctx.drawImage(bg, 0, 0, spillCanvas.width, spillCanvas.height)
         }
 
-        function flyttOpp (){
-            spillCanvas.xfart -=1;
-        }
 
-    //setInterval(lagStang, 4000)
+    function sjekkKollisjon(){ //oppretter en funksjon som sjekker om flyet kolliderer med noen hindere
+        for (let hinder of hindere){ //looper gjennom arrayen som heter hindere
+            if (flyX+flyB > hinder.xpos && flyX < hinder.xpos+20                      //sjekker xposisjonen til flyet i forhold til hinderet, død om flyet sin xposisjon er større enn
+                && (flyY < hinder.ypos - 170  || flyY + flyH >  hinder.ypos)){        //sjekker yposisjonen til flyet, om flyet sin høyde er mindre eller lavere enn yposisjonen til hinderet så dør man
+                aktiv = false;//om flyet "dør", stopper funksjonen og flyet
+            }
+        }
+        }
+    
+    document.body.onkeydown = function(evt) { //en funksjon som aktiveres ved å trykke på en tast
+        var tallkode = evt.keyCode;
+        if (tallkode === 38){ //spesifiserer at ved å trykke på pilopp så
+            flyY -= 18; //flytter flyet 18 px opp
+        }
+        if (tallkode === 40){ //spesifiserer at ved å trykke på pilned så
+            flyY += 18; //flytter flyet 18px ned
+        }
+    };
+
+    //Setup
     gameLoop();
+    merPoeng();
 
 </script>
-
-<button onclick="flyttOpp()">Opp</button>
 
 </body>
 </html>
